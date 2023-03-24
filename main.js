@@ -52,7 +52,7 @@ function afficherTableau(){
             if(tableau[i][j] == 0){
                  txt += "<button class='btn btn-primary m-2' style='width:100px;height:100px; background-image: url(\"./images/Animals/logo.png\");  background-size: 170px;background-repeat: no-repeat;' onClick='verif(\""+i+"-"+j+"\")'></button>";
             }else{
-                txt  += "<img class='btn btn-primary m-2' src=' ./images/Animals/"+tableau[i][j]+".png 'style='width:100px;height:100px' class='m-2' />";
+                txt  += "<img class='btn btn-primary m-2' src=' ./images/Animals/"+tableau[i][j]+".png' style='width:100px;height:100px' class='m-2' />";
             }
         }
         txt += "</div>";
@@ -62,12 +62,11 @@ function afficherTableau(){
     divResultat.innerHTML = txt;
 
     if(nbAfficheTotal > 7 ){
-        jeuTermine();
+        jeuTermine(); 
     }
  
 }
 
- 
 
 function verif(bouton){
     if(ready){ 
@@ -89,6 +88,13 @@ function verif(bouton){
                 if( tableau[ligne][colonne] !== tabResultat[oldSelection[0]][oldSelection[1]] ){
                     tableau[ligne][colonne] = 0;
                     tableau[oldSelection[0]][oldSelection[1]]= 0;
+
+                    var temp = tabResultat[ligne][colonne];
+
+                    tabResultat[ligne][colonne] = tabResultat[oldSelection[0]][oldSelection[1]];
+                    
+                    tabResultat[oldSelection[0]][oldSelection[1]] = temp;
+
                 }else{
                     nbAfficheTotal ++;
                 }
